@@ -89,6 +89,12 @@ app.post("/login", (req, res) => {
     });
 });
 
+app.get("/logout", (req, res) => {
+    console.log("session destroyed");
+    req.session.destroy();
+    res.redirect("/login");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
