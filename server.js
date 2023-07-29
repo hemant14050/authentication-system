@@ -21,6 +21,14 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/dashboard.html");
 });
 
+app.get("/api/user", (req, res) => {
+    if(!req.session.isLoggedin) {
+        res.status(401).send("Not logged in");
+        return;
+    }
+    res.send({username: req.session.username});
+});
+
 app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/public/login.html");
 });
